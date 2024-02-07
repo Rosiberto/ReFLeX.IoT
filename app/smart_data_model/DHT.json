@@ -1,0 +1,30 @@
+{
+   "devices":[
+      {
+         "device_id":"[DEVICE_ID]",
+         "entity_name":"[ENTITY_ID]",
+         "entity_type":"[ENTITY_TYPE]",
+         "timezone":"America/Recife",
+         "transport":"HTTP",
+         "attributes":[
+            {
+               "object_id":"h",
+               "name":"humidity",
+               "type":"float"
+            },
+            {
+               "object_id":"t",
+               "name":"temperature",
+               "type":"float"
+            }
+         ],
+         "static_attributes":[
+            {
+               "name":"id",
+               "type":"string",
+               "value":"[DEVICE_ID]"
+            }
+         ]
+      }
+   ]
+}
