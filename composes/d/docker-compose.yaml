@@ -1,0 +1,105 @@
+version: "3.5"
+services:
+
+  # Orion is the context broker
+  orion:
+    image: fiware/orion:latest
+    hostname: orion
+    container_name: orion
+    depends_on:
+      - mongo
+      - mysql-db
+    networks:
+      - reflex
+    expose:
+      - "1026"
+    ports:
+      - "1026:1026"
+    command: -dbhost mongo -corsOrigin __ALL -logLevel DEBUG -noCache
+    
+  # Cygnus is configured to write context data
+  cygnus:
+    image: fiware/cygnus-ngsi:latest
+    hostname: cygnus
+    container_name: cygnus
+    depends_on:
+      - mongo
+    networks:
+      - reflex
+    expose:
+      - "5080"
+    ports:
+      - "5080:5080" 
+      - "5050:5050"
+      - "5051:5051"
+    environment:
+      - "CYGNUS_MULTIAGENT=true"
+      - "CYGNUS_MONGO_HOSTS=mongo:27017"
+      - "CYGNUS_LOG_LEVEL=DEBUG"
+  
+  agentjson:
+    image: fiware/iotagent-json
+    hostname: agentjson
+    container_name: agentjson
+    depends_on:
+      - mongo
+    networks:
+      - reflex
+    expose:
+      - "4041"
+      - "7896"
+    ports:
+      - "4041:4041"
+      - "7896:7896"
+    environment:
+      - "IOTA_CB_HOST=orion"
+      - "IOTA_CB_PORT=1026"
+      - "IOTA_NORTH_PORT=4041"
+      - "IOTA_REGISTRY_TYPE=mongo"
+      - "IOTA_MONGO_HOST=mongo"
+      - "IOTA_MONGO_PORT=27017"
+      - "IOTA_MONGO_DB=agentjson"
+      - "IOTA_HTTP_PORT=7896"
+      - "IOTA_PROVIDER_URL=http://agentjson:4041"
+  
+  
+  # STH-Comet is persisting Short Term History to Mongo-DB
+  sth:
+    image: fiware/sth-comet:latest
+    hostname: sth
+    container_name: sth
+    volumes:
+      - /home/ubuntu/sth/config.js:/opt/sth/config.js
+    depends_on:
+      - mongo
+    networks:
+      - reflex
+    expose:
+      - "8666"
+    ports:
+      - "8666:8666"
+    environment:
+      - STH_HOST=sth
+      - STH_PORT=8666
+      - DB_URI=mongo:27017
+      - LOGOPS_LEVEL=DEBUG
+      
+  # Databases - Orion uses Mongo-DB, Cygnus is persisting
+  mongo:
+    image: mongo:3.6
+    hostname: mongo
+    container_name: mongo
+    networks:
+      - reflex
+    expose:
+      - "27017"
+    command: --bind_ip_all --smallfiles
+    volumes:
+      - mongo:/data
+  
+networks:
+  reflex:
+    driver: bridge
+    
+volumes:
+  mongo: ~

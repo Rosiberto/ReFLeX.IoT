@@ -1,0 +1,37 @@
+version: "3.5"
+services:
+
+  # Orion is the context broker
+  orion:
+    image: fiware/orion:latest
+    hostname: orion
+    container_name: orion
+    depends_on:
+      - mongo
+    networks:
+      - reflex
+    expose:
+      - "1026"
+    ports:
+      - "1026:1026"
+    command: -dbhost mongo -corsOrigin __ALL -logLevel DEBUG -noCache
+    
+  # Databases - Orion uses Mongo-DB, Cygnus is persisting
+  mongo:
+    image: mongo:3.6
+    hostname: mongo
+    container_name: mongo
+    networks:
+      - reflex
+    expose:
+      - "27017"
+    command: --bind_ip_all --smallfiles
+    volumes:
+      - mongo:/data
+  
+networks:
+  reflex:
+    driver: bridge
+    
+volumes:
+  mongo: ~
