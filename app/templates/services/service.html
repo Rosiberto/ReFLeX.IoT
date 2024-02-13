@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--div class="row-fluid"-->
+	<div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>New service</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="{{ url_for('serv.create') }}" method="post" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label">Entity type :</label>
+						<div class="controls">
+							<input
+							type="text"
+							id="entity_type"
+							name="entity_type"
+							class="span8"
+							placeholder="Entity type"
+							/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Resource :</label>
+						<div class="controls">
+							<input
+							type="text"
+							id="resource"
+							name="resource"
+							class="span8"
+							placeholder="Resource"
+							/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Apikey :</label>
+						<div class="controls">
+							<input
+							type="text"
+							id="apikey"
+							name="apikey"
+							class="span8"
+							placeholder="Enter Apikey"
+							readonly
+							/>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--/div-->
+
+
+<div class="span12">
+    <div class="widget-box">
+		<div class="widget-title">
+            <span class="icon"><i class="icon-th-list"></i></span>
+            <h5>Service List</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+                <thead>
+                    <tr>
+						<th>Apikey</th>
+						<th>Resource</th>
+						<th>Entity Type</th>
+						<th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+				  {% if services is defined %}	
+					{% for i in range(services["services"]|length) %}
+                    <tr class="gradeA">
+						<td class="taskStatus">							
+							<span class="in-progress"></span> {{ services["services"][i]["apikey"] }}
+						</td>
+						<td class="taskStatus">
+							<span class="in-progress">{{ services["services"][i]["resource"] }}</span>
+						</td>
+						<td class="taskStatus">
+							<span class="in-progress">{{ services["services"][i]["entity_type"] }}</span>
+						</td>
+						<td class="taskOptions">
+							<!--a href="#" class="tip-top" data-original-title="Edit"><i class="icon-edit"></i></a-->
+							<a href="{{ url_for('serv.delete', key=services['services'][i]['apikey'] +'_'+services['services'][i]['resource'] | replace('/', '-') ) }}" class="tip-top" data-original-title="Delete">
+								<i class="icon-remove"></i>
+							</a>
+						</td>
+                    </tr> 
+					{% endfor %}  
+				 {% endif %}                
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

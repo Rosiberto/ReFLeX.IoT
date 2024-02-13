@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+				<div class="widget-title">					
+					<h5>Containers</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+							  <th>Name</th>
+							  <!--th>Host / Port</th-->
+							  <th>Status</th>
+							  <th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for container in containers %}
+							<tr>
+								<td class="taskDesc">{{ container.name }}</td>
+								<!--td class="taskDesc"> - </td-->
+								<td class="taskStatus"><b>{{ container.status }}</b></td>
+								<td class="taskOptions">
+								{% if not container.created and ((container.ip == "127.0.0.1" or container.ip == "localhost")) %}
+									<a href="#" class="btn btn-danger btn-mini">Remove</a>
+								{% elif container.status == "running" %} 									
+										<!--a href="#" class="btn btn-danger btn-mini">Remove</a-->
+										<a href="{{ url_for('set.pause', id=container.name) }}" class="btn btn-warning btn-mini">Pause</a>
+										<a href="{{ url_for('set.stop', id=container.name) }}" class="btn btn-danger btn-mini">Stop</a>
+								{% elif container.status == "paused" %}
+										<a href="{{ url_for('set.unpause', id=container.name) }}" class="btn btn-info btn-mini">Unpause</a>
+										<!--a href="#" class="btn btn-danger btn-mini">Remove</a-->
+								{% elif container.status == "exited" %}
+										<a href="{{ url_for('set.start', id=container.name) }}" class="btn btn-success btn-mini">Start</a>
+								{% endif %}								  
+								</td>
+							</tr>
+						{% endfor %}										
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div>
+        <!--div class="span4">
+            <div class="widget-box">
+				<div class="widget-title">
+					<span class="icon">
+					  <i class="icon-arrow-right"></i>
+					</span>
+					<h5>Website statistics</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+							  <th>Site</th>
+							  <th>Visits</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							  <td><a href="#">Themeforest.com</a></td>
+							  <td>12444</td>
+							</tr>                    
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="widget-box">
+				<div class="widget-title">
+					<span class="icon">
+					  <i class="icon-file"></i>
+					</span>
+					<h5>Visited Pages</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+							  <th>Page</th>
+							  <th>Visits</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							  <td><a href="#">Freebies</a></td>
+							  <td>8550</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div-->
+    </div>
+</div>
+{% endblock %}

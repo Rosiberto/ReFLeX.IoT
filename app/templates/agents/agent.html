@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--div class="row-fluid"-->
+	
+<!--/div-->
+
+<div class="span12">
+    <div class="widget-box">
+		<div class="widget-title">
+            <span class="icon"><i class="icon-time"></i></span>
+            <h5>IoT Agent</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+						<th>Type</th>
+						<th>Support</th>
+						<th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+						<td class="taskDesc">
+							<i class="icon-info-sign"></i> IoTAgent-JSON 
+						</td>
+						<td class="taskStatus">
+							a bridge between HTTP/MQTT messaging (with a JSON payload) and NGSI
+						</td>
+						<td class="taskOptions">
+							<a href="#" class="btn btn-success btn-mini">Create</a> 
+							<a href="#" class="btn btn-danger btn-mini">Remove</a>	
+						</td>
+                    </tr>  
+					
+					<tr>
+						<td class="taskDesc">
+							<i class="icon-info-sign"></i> IoTAgent-LWM2M  
+						</td>
+						<td class="taskStatus">
+							a bridge between the Lightweight M2M protocol and NGSI
+						</td>
+						<td class="taskOptions">
+							<a href="#" class="btn btn-success btn-mini">Create</a> 
+							<a href="#" class="btn btn-danger btn-mini">Remove</a>	
+						</td>
+                    </tr>   
+
+					<tr>
+						<td class="taskDesc">
+							<i class="icon-info-sign"></i> IoTAgent-UL   
+						</td>
+						<td class="taskStatus">
+							a bridge between HTTP/MQTT messaging (with an UltraLight2.0 payload) and NGSI
+						</td>
+						<td class="taskOptions">
+							<a href="#" class="btn btn-success btn-mini">Create</a> 
+							<a href="#" class="btn btn-danger btn-mini">Remove</a>	
+						</td>
+                    </tr> 
+
+					<tr>
+						<td class="taskDesc">
+							<i class="icon-info-sign"></i> IoTAgent-LoRaWAN   
+						</td>
+						<td class="taskStatus">
+							a bridge between the LoRaWAN protocol and NGSI
+						</td>
+						<td class="taskOptions">
+							<a href="#" class="btn btn-success btn-mini">Create</a> 
+							<a href="#" class="btn btn-danger btn-mini">Remove</a>	
+						</td>
+                    </tr> 
+
+					<tr>
+						<td class="taskDesc">
+							<i class="icon-info-sign"></i> IoTAgent-OPCUA    
+						</td>
+						<td class="taskStatus">
+							a bridge between the OPC-UA protocol and NGSI
+						</td>
+						<td class="taskOptions">
+							<a href="#" class="btn btn-success btn-mini">Create</a> 
+							<a href="#" class="btn btn-danger btn-mini">Remove</a>	
+						</td> 
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
