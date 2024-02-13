@@ -47,33 +47,34 @@ services:
       - "CYGNUS_MYSQL_PASS=123"
       - "CYGNUS_MYSQL_SERVICE_PORT=5050"
      
-  #iotagentul:
-  #  image: fiware/iotagent-ul
-  #  hostname: iotagentul
-  #  container_name: iotagentul
-  #  depends_on:
-  #    - mongodb
-  #  networks:
-  #    - reflex
-  #  expose:
-  #    - "4061"
-  #    - "7896"
-  #  ports:
-  #    - "4061:4061"
-  #    - "7896:7896"
-  #  environment:
-  #    - "IOTA_CB_HOST=orion"
-  #    - "IOTA_CB_PORT=1026"
-  #    - "IOTA_NORTH_PORT=4061"
-  #    - "IOTA_REGISTRY_TYPE=mongodb"
-  #    - "IOTA_MONGO_HOST=mongodb"
-  #    - "IOTA_MONGO_PORT=27017"
-  #    - "IOTA_MONGO_DB=iotagentul"
-  #    - "IOTA_HTTP_PORT=7896"
-  #    - "IOTA_PROVIDER_URL=http://iotagentul:4061"  
+  iotagentul:
+    image: fiware/iotagent-ul:latest
+    hostname: iotagentul
+    container_name: iotagentul
+    depends_on:
+      - mongodb
+      - mysql-db
+    networks:
+      - reflex
+    expose:
+      - "4061"
+      - "7896"
+    ports:
+      - "4061:4061"
+      - "7896:7896"
+    environment:
+      - "IOTA_CB_HOST=orion"
+      - "IOTA_CB_PORT=1026"
+      - "IOTA_NORTH_PORT=4061"
+      - "IOTA_REGISTRY_TYPE=mongodb"
+      - "IOTA_MONGO_HOST=mongodb"
+      - "IOTA_MONGO_PORT=27017"
+      - "IOTA_MONGO_DB=iotagentul"
+      - "IOTA_HTTP_PORT=7896"
+      - "IOTA_PROVIDER_URL=http://iotagentul:4061"  
   
   agentjson:
-    image: fiware/iotagent-json
+    image: fiware/iotagent-json:latest
     hostname: agentjson
     container_name: agentjson
     depends_on:
