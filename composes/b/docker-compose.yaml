@@ -36,14 +36,7 @@ services:
       - "CYGNUS_MONGO_HOSTS=mongo:27017"
       - "CYGNUS_LOG_LEVEL=DEBUG"
       #- "CYGNUS_SERVICE_PORT=5050"
-      #- "CYGNUS_API_PORT=5080"
-      
-      #inclui as linhas do mysql 21-05-2022
-      - "CYGNUS_MYSQL_HOST=mysql-db"
-      - "CYGNUS_MYSQL_PORT=3306"
-      - "CYGNUS_MYSQL_USER=root"
-      - "CYGNUS_MYSQL_PASS=123"
-      - "CYGNUS_MYSQL_SERVICE_PORT=5050"
+      #- "CYGNUS_API_PORT=5080"      
       
   # Databases - Orion uses Mongo-DB, Cygnus is persisting
   mongo:
