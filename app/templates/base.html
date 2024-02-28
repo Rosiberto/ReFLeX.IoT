@@ -38,60 +38,64 @@
     <!--top-Header-menu-->
     <div id="user-nav" class="navbar navbar-inverse">
 		<ul class="nav">		
-		{% if g.user %}		
+		{% if g.user %}	
+    
+      <li class="">
+        <a title="" href="#">
+          <i class="icon icon-user"></i> 
+          <span class="text">Welcome, {{ g.user['username'] }}</span>
+        </a>
+      </li>
+         
+      <!--li class="">		
+        <a href="{{ url_for('auth.register') }}">
+          <i class="icon icon-edit"></i><span>Account</span>
+        </a>
+      </li-->	
+
 			<li class="">
-				<a href="#">
+				<a href="{{ url_for('auth.logout') }}">
 					<i class="icon icon-off"></i><span class="text">Logout</span>
 				</a>
-			</li>		
-        {% else %}      
+      </li>
+				
+    {% else %}      
 			<li class="">
-				<a href="#">
-					<i class="icon icon-lock"></i><span class="text">Login</span>
+				<a href="{{ url_for('auth.login') }}">
+					<i class="icon icon-user"></i><span class="text">Login</span>
 				</a>
 			</li>
 		{% endif %}		
 		</ul>
-    </div>		
+  </div>		
 	<!--close-top-Header-menu-->
 	
-	<div id="sidebar">      
-      <ul>    	 	
-		    <li>
+  <div id="sidebar">      
+    <ul>    	 	
+        <li>
           <a href="{{ url_for('pages.index') }}"><i class="icon icon-home"></i><span>Home</span></a>
           &emsp;&emsp;
-        </li>	  
-        
-        <!--li>
-          <a href="{{ url_for('dev.device') }}"><i class="icon icon-hdd"></i> <span>Device</span></a>
-        </li>
-        <li>
-          <a href="{{ url_for('serv.service') }}"><i class="icon icon-wrench"></i><span>Service</span></a >
-        </li--> 
-
+        </li>	 
         <li class="submenu">
           <a href="#"><i class="icon icon-screenshot"></i> <span>Provisioning</span></a>
           <ul>
-            <li><a href="{{ url_for('serv.service') }}"><i class="icon icon-wrench"></i>Service Group</a></li>
-            <li><a href="{{ url_for('dev.device') }}"><i class="icon icon-hdd"></i>Device</a></li>            
+              <li>
+                      <a href="{{ url_for('serv.service') }}"><i class="icon icon-wrench"></i>Service Group</a>
+                  </li>
+              <li>
+                      <a href="{{ url_for('dev.device') }}"><i class="icon icon-hdd"></i>Device</a>
+                  </li>            
           </ul>
         </li>
-
         <li>
-          <a href="{{ url_for('set.setup') }}"><i class="icon icon-cog"></i><span>Setup</span></a>
-        </li>
-        <!--li>
-          <a href="#"><i class="icon icon-tasks"></i> <span>Broker</span></a>
-        </li-->                     
-        <li>
-          <!--a href="{{ url_for('sig.subscription') }}"><i class="icon icon-qrcode"></i><span>Signature</span></a-->
-          <a href="{{ url_for('age.agent') }}"><i class="icon icon-eye-open"></i><span>Agent</span></a>
-        </li>		
-		    <li>
-          <a href="{{ url_for('auth.register') }}"><i class="icon icon-cog"></i><span>Settings</span></a>
-        </li>		      </ul>
+          <a href="{{ url_for('set.setup') }}"><i class="icon icon-cog"></i><span>Settings</span></a>
+        </li>     
+    </ul>
     </div>		
+   
 	
+    
+
 	<div id="content">  	
 		<div id="content-header">
 			<div id="breadcrumb"></div>

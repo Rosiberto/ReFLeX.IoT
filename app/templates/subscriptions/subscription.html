@@ -20,8 +20,11 @@
 							<tr>
 								<td class="taskDesc">Store historical data</td>
 								<td class="taskOptions">
-									<a href="{{ url_for('sig.activate') }}" class="btn btn-success btn-mini">Activate</a> 
-									<a href="#" class="btn btn-danger btn-mini">Disable</a>								
+									{% if not retorno %}
+										<a href="{{ url_for('sig.activate') }}" class="btn btn-success btn-mini">Activate</a>
+									{% else %}
+										 Activated
+									{% endif %}
 								</td>
 							</tr>										
 						</tbody>

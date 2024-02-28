@@ -1,64 +1,96 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, maruti admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, maruti design, maruti dashboard bootstrap 4 dashboard template"
+    />
+    <meta name="description" content="Maruti is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
+    />
+    <title>ReFLeX.IoT Platform</title>
 
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/maruti-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/maruti-media.css')}} ">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uniform.css') }} ">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/maruti-login.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.css') }}" />
 
-{% block content %}   
-  
+  </head>
+
+  <body>
     <div id="loginbox">
-      <form id="loginform" class="form-vertical" method="post" action="#">
+      <form id="loginform" class="form-vertical" method="post" action="{{ url_for('auth.login') }}">
         <div class="control-group normal_text">
-          <h3><img src="#" alt="Logo" /></h3>
+          <h3><img src="{{ url_for('static', filename='img/logo.png') }}" alt="ReFLeX.IoT" /></h3>
         </div>
         <div class="control-group">
           <div class="controls">
             <div class="main_input_box">
-              <span class="add-on"><i class="icon-user"></i></span
-              ><input type="text" placeholder="Username" id="username" name="username"/>
+              <span class="add-on"><i class="icon-user"></i></span>
+                <input type="text" placeholder="Username" id="username" name="username"/>
             </div>
           </div>
         </div>
         <div class="control-group">
           <div class="controls">
             <div class="main_input_box">
-              <span class="add-on"><i class="icon-lock"></i></span
-              ><input type="password" placeholder="Password" id="password" name="password"/>
+              <span class="add-on"><i class="icon-lock"></i></span>
+                <input type="password" placeholder="Password" id="password" name="password"/>
             </div>
           </div>
+          
         </div>
         <div class="form-actions">
-          <span class="pull-left"
-            ><a href="#" class="flip-link btn btn-inverse" id="to-recover"
-              >Lost password?</a
-            ></span
-          >
-          <span class="pull-right"
-            ><input type="submit" class="btn btn-success" value="Login"
-          /></span>
+          <span class="pull-left">
+            <a href="#" class="flip-link btn btn-inverse" id="to-recover">New register?</a>
+          </span>
+          <span class="pull-right">
+            <input type="submit" class="btn btn-success" value="Login"/>
+          </span>
+          
         </div>
       </form>
-      <form id="recoverform" action="#" class="form-vertical">
+
+      <form id="recoverform" action="{{ url_for('auth.register') }}" method="post" class="form-vertical">
         <p class="normal_text">
-          Enter your e-mail address below and we will send you instructions how
-          to recover a password.
+          Enter your name, username and password below and to make your register.
         </p>
 
-        <div class="controls">
-          <div class="main_input_box">
-            <span class="add-on"><i class="icon-envelope"></i></span
-            ><input type="text" placeholder="E-mail address" id="email" name="email"/>
-          </div>
-        </div>
+        <div class="widget-content nopadding"  >
+				    <div class="controls">              
+              <div class="main_input_box">                
+                <span class="add-on"><i class="icon-edit"></i></span>                
+                <input type="text" placeholder="Your Name" class="span11" name="name" id="name" />
+              </div>
+            </div>
 
-        <div class="form-actions">
-          <span class="pull-left"
-            ><a href="#" class="flip-link btn btn-inverse" id="to-login"
-              >&laquo; Back to login</a
-            ></span
-          >
-          <span class="pull-right"
-            ><input type="submit" class="btn btn-info" value="Recover"
-          /></span>
-        </div>
-      </form>
+            <div class="controls">
+              <div class="main_input_box">
+                <span class="add-on"><i class="icon-pencil"></i></span>
+                <input type="text" placeholder="Username" class="span11" name="username" id="username"/>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="main_input_box">
+                <span class="add-on"><i class="icon-eye-close"></i></span>
+                <input placeholder="Password" type="password"  class="span11" name="password" id="password"/>
+              </div>
+            </div>						
+										
+						<div class="form-actions">
+							<input type="submit" value="Save" class="btn btn-success"/>
+						</div>					
+				</div>
+      </form>       
     </div>
-
-{% endblock %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/maruti.login.js') }}"></script>  
+   
+  </body>
+</html>

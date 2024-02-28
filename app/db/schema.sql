@@ -6,10 +6,3 @@ CREATE TABLE users (
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL
 );
-
-CREATE TABLE service (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  entity_type TEXT NOT NULL,
-  resource TEXT UNIQUE NOT NULL,
-  apikey TEXT NOT NULL
-);

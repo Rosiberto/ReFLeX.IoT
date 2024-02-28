@@ -1,54 +1,25 @@
 {% extends 'base.html' %}
 
+<div id="content">  	
+	 <div id="content-header">
+	 <div id="breadcrumb"></div>
+</div>	
+	  
 {% block content %}
+
 	<div class="container-fluid">
 		<div class="quick-actions_homepage">
-			<ul class="stat-boxes">  
+			<!--ul class="stat-boxes">  
+				<li> 
+					<div class="right"><strong>15598</strong> Total Conteiners</div>
+				</li>
 				<li>
-					<div class="left peity_bar_neutral">
-					  <span
-						><span style="display: none">2,4,9,7,12,10,12</span>
-						<canvas width="50" height="24"></canvas> </span
-					  >+10%
-					</div>
-					<div class="right"><strong>15598</strong> Total Concteiners</div>
-				  </li>
-				  <li>
-					<div class="left peity_line_neutral">
-					  <span
-						><span style="display: none">10,15,8,14,13,10,10,15</span>
-						<canvas width="50" height="24"></canvas> </span
-					  >10%
-					</div>
 					<div class="right"><strong>150</strong> Memory in use</div>
-				  </li>
-				  <li>
-					<div class="left peity_bar_bad">
-					  <span
-						><span style="display: none">3,5,6,16,8,10,6</span>
-						<canvas width="50" height="24"></canvas> </span
-					  >-40%
-					</div>
-					<div class="right"><strong>4560</strong> Total Memory</div>
-				  </li>     
-				  <li>
-					<div class="left peity_bar_bad">
-					  <span
-						><span style="display: none">3,5,6,16,8,10,6</span>
-						<canvas width="50" height="24"></canvas> </span
-					  >-40%
-					</div>
-					<div class="right"><strong>4560</strong> Total CPU</div>
-				  </li>      
-				  <li>
-					<div class="left peity_bar_bad">
-					  <span
-						><span style="display: none">3,5,6,16,8,10,6</span>
-						<canvas width="50" height="24"></canvas> </span
-					  >-40%
-					</div>
-					<div class="right"><strong>4560</strong> Total Network</div>
-				  </li> 
+				</li>
+				<li>
+					<div class="right"><strong>4560</strong> CPU in use</div>
+				</li-->      
+				
 				<!--li>
 				  <a href="{{ url_for('age.agent') }}"> <i class="icon-people"></i> Agents</a>
 				</li-->
@@ -61,7 +32,7 @@
 				<li>
 				  <a href="{{ url_for('serv.service') }}"> <i class="icon-tag"></i> Services </a>
 				</li-->
-	        </ul>
+	        <!--/ul-->
 		</div>
 	</div>
 {% endblock %}
