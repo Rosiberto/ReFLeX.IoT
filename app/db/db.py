@@ -43,6 +43,7 @@ def init_app(app):
 
 
 #inicializar o banco de dados
+#dentro da pasta app, executar:
 # flask --app app init-db
 
     
