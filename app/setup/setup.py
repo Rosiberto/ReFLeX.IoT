@@ -8,11 +8,12 @@ client = docker.from_env()
 
 bp = Blueprint('set', __name__, url_prefix='/set')
 
+
 @bp.route('/setup', methods=['GET'])
 def setup():
 
-    retorno = find()
-
+    retorno = find()  
+    
     if request.method == 'GET':
         containers = client.containers.list(all=True)   
         
@@ -66,7 +67,6 @@ def stop(id):
 
 
 #Subscription
-
 headersGETDELETE = {
           "fiware-service":"reflexiot",
           "fiware-servicepath":"/"          
@@ -111,13 +111,16 @@ def activate():
 
 
 def find():
-  response = requests.get('http://localhost:1026/v2/subscriptions',
+    try:
+        response = requests.get('http://localhost:1026/v2/subscriptions',
                           headers=headersGETDELETE,                          
                           verify=False
                         ) 
-  #print("=> "+ response.text )
-
-  if response.text == "[]":
-     return False
+    except requests.exceptions.ConnectionError as e:
+        return False
   
-  return True
+    #print("=> "+ response.text )
+    if response.text == "[]" or None:
+        return False
+  
+    return True
