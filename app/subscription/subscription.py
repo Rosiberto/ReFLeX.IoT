@@ -48,7 +48,7 @@ subscription = {
 
 @bp.route('/activate', methods=['GET','POST'])
 def activate():
-    cygnus_registration = requests.post('http://localhost:1026/v2/subscriptions',
+    cygnus_registration = requests.post('http://orion:1026/v2/subscriptions',
                           headers=headers,
                           json=subscription,
                           verify=False
@@ -59,7 +59,7 @@ def activate():
     return redirect(url_for("sig.subscription"))
 
 def find():
-  response = requests.get('http://localhost:1026/v2/subscriptions',
+  response = requests.get('http://orion:1026/v2/subscriptions',
                           headers=headersGETDELETE,                          
                           verify=False
                         ) 

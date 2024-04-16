@@ -9,7 +9,7 @@ from pathlib import Path
 bp = Blueprint('dev', __name__, url_prefix='/dev')
 
 
-url = "http://localhost:4041/iot/devices"
+url = "http://agentjson:4041/iot/devices"
 
 headers = {
           "fiware-service":"reflexiot",
@@ -21,7 +21,7 @@ smart_data_model = "./smart_data_model/"
 extension = ['json']
 
 
-@bp.route('/device', methods=['GET'])
+@bp.route('/#', methods=['GET'])
 def device():
     list_models = load()
 
@@ -29,11 +29,11 @@ def device():
     return render_template('./devices/device.html', list_models = list_models)
 
 
-@bp.route('/list')
+@bp.route('/##')
 def devices():   
     list_devices = all()
 
-    print("\n",list_devices, "\n")
+    #print("\n",list_devices, "\n")
 
     return render_template('./devices/devices.html', list_devices = list_devices)
 
@@ -86,8 +86,7 @@ def save():
             response = requests.post(url,
                 headers  = headers,
                 data     = device_schema,
-                verify   = False
-                
+                verify   = False                
             )
           
         except Exception as e:
@@ -125,8 +124,7 @@ def delete(key):
     #print("\nkey ",key)
     
     payload = "/"+ key
-    print("\nP-> ",payload)
-
+    #print("\nP-> ",payload)
 
     if request.method == 'GET':     
         try:
@@ -135,7 +133,7 @@ def delete(key):
                                     verify   = False
                         )
             
-            print("\n", response)
+        #    print("\n", response)
 
             return redirect(url_for("dev.devices"))
         

@@ -5,10 +5,12 @@ from werkzeug.exceptions import abort
 from flask import Flask
 import os
 
+
 server = Flask(__name__)
 server.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=('./db/db.sqlite'))
+
 
 from db  import db
 db.init_app(server)
@@ -33,11 +35,3 @@ server.register_blueprint(setup.bp)
 
 from subscription import subscription
 server.register_blueprint(subscription.bp)
-
-
-#server.add_url_rule("/", endpoint="index")
-
-#@server.route('/')
-#def index():
-#    return render_template('./auth/login.html')
-    

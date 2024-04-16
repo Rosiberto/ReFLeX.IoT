@@ -1,23 +1,27 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, Response, jsonify
 )
+
 from werkzeug.exceptions import abort
-import json, requests
+
+import requests
 import docker
+
 client = docker.from_env()
+#client = docker.DockerClient(base_url='unix://var/run/docker.sock')
 
 bp = Blueprint('set', __name__, url_prefix='/set')
 
 
-@bp.route('/setup', methods=['GET'])
+@bp.route('/#',  methods=['GET'])
 def setup():
 
     retorno = find()  
     
-    if request.method == 'GET':
-        containers = client.containers.list(all=True)   
+    listContainers = []
+    listContainers = client.containers.list(all=True)
         
-    return render_template('./setup/setup.html',containers=containers, retorno = retorno)
+    return render_template('./setup/setup.html', containers=listContainers, retorno = retorno)
     
 
 @bp.route('/pause/<id>', methods=['GET'])
@@ -97,9 +101,9 @@ subscription = {
             }
 
 
-@bp.route('/activate', methods=['GET','POST'])
+@bp.route('/#', methods=['GET','POST'])
 def activate():
-    cygnus_registration = requests.post('http://localhost:1026/v2/subscriptions',
+    cygnus_registration = requests.post('http://orion:1026/v2/subscriptions',
                           headers=headers,
                           json=subscription,
                           verify=False
@@ -112,10 +116,11 @@ def activate():
 
 def find():
     try:
-        response = requests.get('http://localhost:1026/v2/subscriptions',
+        response = requests.get('http://orion:1026/v2/subscriptions',
                           headers=headersGETDELETE,                          
                           verify=False
                         ) 
+       
     except requests.exceptions.ConnectionError as e:
         return False
   
@@ -124,3 +129,6 @@ def find():
         return False
   
     return True
+
+
+
