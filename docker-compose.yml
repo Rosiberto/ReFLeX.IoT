@@ -73,7 +73,24 @@ services:
     command: --bind_ip_all --smallfiles
     volumes:
       - mongo:/data
-  
+      
+  # Databases - Orion uses Mysql, Cygnus is persisting
+  mysql-db:
+    #restart: always
+    image: mysql:5.7
+    hostname: mysql
+    container_name: mysql
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    networks:
+      - reflex
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123"
+      - "MYSQL_ROOT_HOST=%"        
+    volumes:
+      - mysql:/data
 # API                
   app:
     image: rosiberto/app-reflexiot:latest
@@ -95,7 +112,13 @@ services:
     networks:
       - reflex
     depends_on:
-      - app
+      - app 
+  
+  #Para quem for utilizar Grafana ou Freeboard para Dashboard, incluir aqui as definições do conteiner.
+  #Atentar para o alinhamento correto do arquivo.
+  
+  
+  
   
 networks:
   reflex:
@@ -103,3 +126,4 @@ networks:
     
 volumes:
   mongo: ~
+  mysql: ~
