@@ -76,7 +76,7 @@ services:
       
   # Databases - Orion uses Mysql, Cygnus is persisting
   mysql-db:
-    #restart: always
+    restart: always
     image: mysql:5.7
     hostname: mysql
     container_name: mysql
@@ -114,12 +114,25 @@ services:
     depends_on:
       - app 
   
-  #Para quem for utilizar Grafana ou Freeboard para Dashboard, incluir aqui as definições do conteiner.
-  #Atentar para o alinhamento correto do arquivo.
-  
-  
-  
-  
+  # grafana used for graphing mysql data
+  grafana:
+    image: grafana/grafana-oss:latest
+    hostname: grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+        - 3000:3000
+    networks:
+        - reflex
+    volumes:
+        - grafana:/data
+    depends_on:
+        - mongo 
+        - mysql-db
+        - cygnus
+        - orion
+
+
 networks:
   reflex:
     driver: bridge
@@ -127,3 +140,4 @@ networks:
 volumes:
   mongo: ~
   mysql: ~
+  grafana: ~
