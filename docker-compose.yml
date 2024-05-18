@@ -140,7 +140,4 @@ networks:
 volumes:
   mongo: ~
   mysql: ~
-<<<<<<< HEAD
   grafana: ~
-=======
->>>>>>> c4dba440bd1d66dbef0cb471d5649ef823012efc
