@@ -101,7 +101,7 @@ subscription = {
             }
 
 
-@bp.route('/#', methods=['GET','POST'])
+@bp.route('/#', methods=['POST'])
 def activate():
     cygnus_registration = requests.post('http://orion:1026/v2/subscriptions',
                           headers=headers,
