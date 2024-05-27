@@ -37,7 +37,7 @@ services:
       - "CYGNUS_MULTIAGENT=true"
       - "CYGNUS_MONGO_HOSTS=mongo:27017"
       - "CYGNUS_LOG_LEVEL=DEBUG"
-      - "CYGNUS_MYSQL_HOST=mysql"
+      - "CYGNUS_MYSQL_HOST=reflexiot-mysql"
       - "CYGNUS_MYSQL_PORT=3306"
       - "CYGNUS_MYSQL_USER=root"
       - "CYGNUS_MYSQL_PASS=123"
