@@ -8,7 +8,7 @@ services:
     container_name: orion
     depends_on:
       - mongo
-      - mysql
+      - mysql-db
     networks:
       - reflex
     expose:
@@ -24,7 +24,7 @@ services:
     container_name: cygnus
     depends_on:
       - mongo
-      - mysql
+      - mysql-db
     networks:
       - reflex
     expose:
@@ -37,7 +37,7 @@ services:
       - "CYGNUS_MULTIAGENT=true"
       - "CYGNUS_MONGO_HOSTS=mongo:27017"
       - "CYGNUS_LOG_LEVEL=DEBUG"
-      - "CYGNUS_MYSQL_HOST=reflexiot-mysql"
+      - "CYGNUS_MYSQL_HOST=mysql-db"
       - "CYGNUS_MYSQL_PORT=3306"
       - "CYGNUS_MYSQL_USER=root"
       - "CYGNUS_MYSQL_PASS=123"
@@ -51,7 +51,7 @@ services:
     container_name: agentjson
     depends_on:
       - mongo
-      - mysql
+      - mysql-db
     networks:
       - reflex
     expose:
@@ -85,11 +85,11 @@ services:
       - mongo:/data
       
   # Databases - Orion uses Mysql, Cygnus is persisting
-  mysql:
+  mysql-db:
     restart: always
     image: mysql:5.7
-    hostname: mysql
-    container_name: mysql
+    hostname: mysql-db
+    container_name: mysql-db
     expose:
       - "3306"
     ports:
@@ -138,7 +138,7 @@ services:
         - grafana:/data
     depends_on:
         - mongo 
-        - mysql
+        - mysql-db
         - cygnus
         - orion
 
