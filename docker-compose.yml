@@ -8,6 +8,7 @@ services:
     container_name: orion
     depends_on:
       - mongo
+      - mysql
     networks:
       - reflex
     expose:
@@ -23,6 +24,7 @@ services:
     container_name: cygnus
     depends_on:
       - mongo
+      - mysql
     networks:
       - reflex
     expose:
@@ -35,11 +37,13 @@ services:
       - "CYGNUS_MULTIAGENT=true"
       - "CYGNUS_MONGO_HOSTS=mongo:27017"
       - "CYGNUS_LOG_LEVEL=DEBUG"
-      - "CYGNUS_MYSQL_HOST=mysql-db"
+      - "CYGNUS_MYSQL_HOST=mysql"
       - "CYGNUS_MYSQL_PORT=3306"
       - "CYGNUS_MYSQL_USER=root"
       - "CYGNUS_MYSQL_PASS=123"
       - "CYGNUS_MYSQL_SERVICE_PORT=5050"
+      #- "CYGNUS_API_PORT=5080"
+      #- "CYGNUS_SERVICE_PORT=5050"
   
   agentjson:
     image: fiware/iotagent-json:latest
@@ -47,6 +51,7 @@ services:
     container_name: agentjson
     depends_on:
       - mongo
+      - mysql
     networks:
       - reflex
     expose:
@@ -80,7 +85,7 @@ services:
       - mongo:/data
       
   # Databases - Orion uses Mysql, Cygnus is persisting
-  mysql-db:
+  mysql:
     restart: always
     image: mysql:5.7
     hostname: mysql
