@@ -117,7 +117,11 @@
 								<td class="taskDesc">Store historical data</td>
 								<td class="taskOptions">
 									{% if not retorno %}
-										<a href="{{ url_for('set.activate') }}" class="btn btn-success btn-mini">Activate</a>
+									<form action="{{ url_for('set.activate') }}" method="post" class="form-horizontal">										
+										<div class="form-actions">
+											<button type="submit" class="btn btn-success btn-mini">Activate</button>
+										</div>
+									</form>
 									{% else %}
 										 Activated
 									{% endif %}
