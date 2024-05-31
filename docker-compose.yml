@@ -119,7 +119,6 @@ services:
     command: gunicorn -w 2 -b 0.0.0.0:5000 wsgi:server
   
   nginx:
-    restart: always
     container_name: nginx
     restart: always
     build: ./nginx
@@ -132,7 +131,6 @@ services:
   
   # grafana used for graphing mysql data
   grafana:
-    restart: always
     image: grafana/grafana-oss:latest
     hostname: grafana
     container_name: grafana
