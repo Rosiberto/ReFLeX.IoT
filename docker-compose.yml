@@ -1,4 +1,3 @@
-#version: "3.8"
 services:
 
   # Orion is the context broker
@@ -44,8 +43,8 @@ services:
       - "CYGNUS_MYSQL_USER=root"
       - "CYGNUS_MYSQL_PASS=123"
       - "CYGNUS_MYSQL_SERVICE_PORT=5050"
-      #- "CYGNUS_API_PORT=5080"
-      #- "CYGNUS_SERVICE_PORT=5050"
+      - "CYGNUS_API_PORT=5080"
+      - "CYGNUS_SERVICE_PORT=5050"
   
   agentjson:
     restart: always
@@ -114,6 +113,11 @@ services:
       - "8000:5000"
     networks:
       - reflex
+    depends_on:
+      - mongo
+      - mysql
+      - cygnus
+      - orion
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: gunicorn -w 2 -b 0.0.0.0:5000 wsgi:server
@@ -136,18 +140,17 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports:
-        - 3000:3000
+      - 3000:3000
     networks:
-        - reflex
+      - reflex
     volumes:
-        - grafana:/data
+      - grafana:/data
     depends_on:
-        - mongo 
-        - mysql
-        - agentjson
-        - cygnus
-        - orion
-
+      - mongo 
+      - mysql
+      - agentjson
+      - cygnus
+      - orion
 
 networks:
   reflex:
