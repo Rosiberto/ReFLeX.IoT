@@ -1,0 +1,13 @@
+====================================================
+remover TUDO se usou docker-compose up - d
+====================================================
+docker-compose down
+
+
+====================================================
+remover todos containers,imagens, volumes e redes
+====================================================
+docker rm $(docker ps -aq) -f
+docker volume rm $(docker volume ls) -f
+docker rmi $(docker images -aq) -f
+docker network rm $(docker network ls)
