@@ -28,4 +28,5 @@ IoT Platform for Prototyping applications for Smart Cities.
 ## Examples with Arduino
    <a href="files/arduino1.md">Example 1</a>
    
-   <!--<a href="files/communication.md">Comunication between device, IoT Agent and Orion</a>-->
+   <a href="files/arduino2.md">Example 2</a>
+   
