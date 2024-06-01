@@ -23,4 +23,4 @@ No exemplo, o **Agente IoT** é informado que o endpoint `/iot/json` será usado
 http://agentjson:7896/iot/json?i=<device_id>&k=ec65734d95ad4bb68a4da3e67049725e
 ```
 
-Quando uma medição do dispositivo (e.g. sensor umidade) é enviada pelo arduino na URL do recurso, ela precisa ser interpretada e passada para o **Orion**. O atributo `entity_type` fornece um `type` padrão para cada dispositivo que fez uma solicitação (neste caso, os dispositivos anônimos serão conhecidos como entidades `Device`.
+Quando uma medição do dispositivo (e.g. sensor umidade) é enviada pelo arduino na URL do recurso, ela precisa ser interpretada e passada para o **Orion**. O atributo `entity_type` fornece um `type` padrão para cada dispositivo que fez uma solicitação (neste caso, os dispositivos anônimos serão conhecidos como entidades `Sensor`.
