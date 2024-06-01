@@ -3,11 +3,11 @@
 Provisionar um grupo de serviço é a primeira etapa na conexão de dispositivos. É sempre necessário fornecer uma *Apikey* de autenticação com cada medição e o **Agente IoT** não saberá inicialmente em qual URL o agente de contexto está respondendo.
 
 
-- On the interface, select **Provisioning -> Service Group**. O serviço indicado tem as seguintes características:
+- On the interface, select **Provisioning -> Service Group**. 
 
 ![](img/4.png)
 
-- fill in the form with your service and click in *save*.
+- O serviço indicado tem as seguintes características. Fill in the form with your service and click in *save*.
 
 ![](img/5.png)
 
