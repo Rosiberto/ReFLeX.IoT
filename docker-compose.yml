@@ -15,7 +15,7 @@ services:
       - "1026"
     ports:
       - "1026:1026"
-    command: -dbhost mongo -corsOrigin __ALL -logLevel DEBUG -noCache
+    command: -dbhost mongo -corsOrigin __ALL -logLevel DEBUG
     
   # Cygnus is configured to write context data
   cygnus:
@@ -34,8 +34,7 @@ services:
       - "5080:5080" 
       - "5050:5050"
       - "5051:5051"
-    environment:
-      - "CYGNUS_MULTIAGENT=true"
+    environment:    
       - "CYGNUS_MONGO_HOSTS=mongo:27017"
       - "CYGNUS_LOG_LEVEL=DEBUG"
       - "CYGNUS_MYSQL_HOST=mysql"
@@ -43,9 +42,7 @@ services:
       - "CYGNUS_MYSQL_USER=root"
       - "CYGNUS_MYSQL_PASS=123"
       - "CYGNUS_MYSQL_SERVICE_PORT=5050"
-      - "CYGNUS_API_PORT=5080"
-      - "CYGNUS_SERVICE_PORT=5050"
-  
+        
   agentjson:
     restart: always
     image: fiware/iotagent-json:latest
@@ -76,14 +73,14 @@ services:
   # Databases - Orion uses Mongo-DB, Cygnus is persisting
   mongo:
     restart: always
-    image: mongo:3.6
+    image: mongo:latest
     hostname: mongo
     container_name: mongo
     networks:
       - reflex
     expose:
       - "27017"
-    command: --bind_ip_all --smallfiles
+    command: --bind_ip_all
     volumes:
       - mongo:/data
       
