@@ -17,7 +17,7 @@ Provisionar um grupo de serviço é a primeira etapa na conexão de dispositivos
 
 
 
-No exemplo, o **Agente IoT** é informado que o endpoint `/iot/json` será usado e que os dispositivos se autenticarão incluindo o token `ec65734d95ad4bb68a4da3e67049725e`. Para um **Agente IoT JSON**, isso significa que os dispositivos enviarão solicitações GET ou POST para:
+No exemplo, o **Agente IoT** é informado que o endpoint `/iot/json` será usado e que os dispositivos se autenticarão incluindo a apikey `ec65734d95ad4bb68a4da3e67049725e`. Para um **Agente IoT JSON**, isso significa que os dispositivos enviarão solicitações GET ou POST para:
 
 ```
 http://agentjson:7896/iot/json?i=<device_id>&k=ec65734d95ad4bb68a4da3e67049725e
