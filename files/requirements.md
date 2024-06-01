@@ -7,7 +7,9 @@ Recommended:
 
 
 *configuration*: 1 vCPU, 1GB RAM and HDD or SSD.
+
 *Install any Linux distribution, but Ubuntu Server 24.04 LTS, Docker and Ddocker Compose*.
+
 
 Open ports on the firewall if you are using a Cloud Service:
 
