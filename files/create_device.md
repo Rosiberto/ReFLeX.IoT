@@ -5,7 +5,11 @@
 ![](img/1.png)
 
 
-<a href="files/create_attribute.md">Create attribute for device.<a>
+## Creating an Attribute
+
+- On the interface, in **Select model**, Select the model compatible with your sensor. 
+
+![](img/7.png)
 
 
 - fill in the form with your device data and click in *save*.

@@ -1,4 +1,4 @@
-## Update/Reset
+## Remove/Create Container
 
 Run the following commands:
 
