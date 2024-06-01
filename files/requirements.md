@@ -4,6 +4,7 @@
 Use your windows machine with, Virtual Box, VMware. Or  a machine with linux. Or Cloud Service as AWS, IBM Bluemix, Azure or Google. 
 
 Recommended:
+<br>
 *configuration*: 1 vCPU, 1GB RAM and HDD or SSD.
 
 *Install any Linux distribution, but Ubuntu Server 24.04 LTS, Docker and Ddocker Compose*.
