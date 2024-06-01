@@ -1,5 +1,5 @@
 ====================================================
-remover TUDO se usou docker-compose up - d
+remover TODOS contaienrs se usou docker-compose up - d
 ====================================================
 docker-compose down
 
