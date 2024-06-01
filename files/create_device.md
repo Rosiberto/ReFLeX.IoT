@@ -22,7 +22,7 @@ Esta solicitação provisiona um dispositivo no **Agente IoT**.
 
 ![](img/3.png)
 
-Observe que o dispositivo tem 2 atributos (`t` no **Agente IoT** e `temperature` no **Orion**; e `h` no **Agente IoT** e `humidity` no **Orion**).
+Observe que o dispositivo tem 2 atributos (`h` no **Agente IoT** e `humidity` no **Orion**; e `t` no **Agente IoT** e `temperature` no **Orion**).
 
 
 
