@@ -82,57 +82,58 @@ void loop() {
     //Verifica o estado da conexão WiFi 
     if(WiFi.status()== WL_CONNECTED){
 		
-      HTTPClient http; 
-      String urlPath = url; 
+		HTTPClient http; 
+		String urlPath = url; 
 	  
-      delay(5000); 
+		delay(5000); 
       
-	  //captura a leitura do sensor
-	  int l = leituraSensorNivel() ;  
+		//captura a leitura do sensor
+		int l = leituraSensorNivel() ;  
               
-	  if ( isnan(l) ) {
+		if ( isnan(l) ) {
 
-		  Serial.println("Erro ao obter dados do sensor de nível");       
-		  return; 
-
-    } 	  
+			Serial.println("Erro ao obter dados do sensor de nível");       
+			return; 
+		} 	  
 	  
-    http.begin( urlPath.c_str() ); 	  
-	  http.addHeader("Content-Type", "application/json"); 
-	  http.addHeader("fiware-service", "reflexiot");
-	  http.addHeader("fiware-servicepath", "/");
+		http.begin( urlPath.c_str() ); 	  
+		http.addHeader("Content-Type", "application/json"); 
+		http.addHeader("fiware-service", "reflexiot");
+		http.addHeader("fiware-servicepath", "/");
  
-    // Coloca a leitura do sensor no formato JSON 
-    String json; 
-    DynamicJsonDocument doc(1024); 
+		// Coloca a leitura do sensor no formato JSON 
+		String json; 
+		DynamicJsonDocument doc(1024); 
 	  
-    doc["l"]= l; 
+		doc["l"]= l; 
       
-    serializeJson(doc, json); 
+		serializeJson(doc, json); 
 	  
-	  //mostra no serial monitor o valor lido no formato json
-    Serial.println(json); 
+		//mostra no serial monitor o valor lido no formato json
+		Serial.println(json); 
  
-	  //envia para o ReFLeX.IoT
-    int httpResponseCode = http.POST(json);  
+		//envia para o ReFLeX.IoT
+		int httpResponseCode = http.POST(json);  
 
-	  //retorno da solicitação
-    if (httpResponseCode > 0) { 
+		//retorno da solicitação
+		if (httpResponseCode > 0) { 
 	  
-      Serial.print("HTTP Response code: "); 
-      Serial.println(httpResponseCode); 
-      String payload = http.getString(); 
-      Serial.println(payload); 
-     
-	  }else{ 
-      Serial.print("Error code: "); 
-      Serial.println(httpResponseCode); 
-    } 
+			Serial.print("HTTP Response code: "); 
+			Serial.println(httpResponseCode); 
+			String payload = http.getString(); 
+			Serial.println(payload); 
+		
+		}else{ 
+			Serial.print("Error code: "); 
+			Serial.println(httpResponseCode); 
+		} 
       
 	    http.end();
-    } 
-    else { 
+		
+    }else{
+	
       Serial.println("WiFi Desconectado"); 
+	  
     } 
 	
     lastTime = millis(); 
