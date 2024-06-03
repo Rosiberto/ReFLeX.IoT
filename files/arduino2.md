@@ -1,3 +1,5 @@
-## Example 2 - connecting Arduino to the ReFLeX.IoT with internet connect 
+## Example 2 - connecting Arduino to the ReFLeX.IoT without internet connect 
 
 em breve
+
+
