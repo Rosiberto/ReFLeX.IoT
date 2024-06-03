@@ -24,10 +24,10 @@ const char* password = "XXXX";
 //APIKEY        - chave gerada pelo ReFLeX.IoT
 
 String IP_ReFLeX.IoT = "yyyyyyy"
-String PORTA		 = "7896"
-String RESOURCE 	 = "zzzzzzz"
-String DEVICE_ID	 = "wwwwwww"
-String APIKEY 		 = "kkkkkkk"
+String PORTA         = "7896"
+String RESOURCE      = "zzzzzzz"
+String DEVICE_ID     = "wwwwwww"
+String APIKEY        = "kkkkkkk"
 
 
 //definição da URL completa. Não alterar
@@ -36,7 +36,12 @@ String url = "http://"+IP_ReFLeX.IoT+":"+PORTA+RESOURCE+"?i="+DEVICE_ID+"&k="+AP
 
 //Variáveis de tempo 
 unsigned long lastTime = 0; 
-unsigned long timerDelay = 30000; 
+unsigned long timerDelay = 30000;
+
+/* Pinos correspondentes ao sensor */
+#define sensorVCC 2     /*Define vcc como pino 2 */ 
+#define sensorSinal A1  /*Define sinal como pino A1 */ 
+
 ```
 
 *3 - Configurações*
@@ -86,45 +91,45 @@ void loop() {
 	  int l = leituraSensorNivel() ;  
               
 	  if ( isnan(l) ) {
-		  
-		Serial.println("Erro ao obter dados do sensor de nível"); 
-      
-		return; 
-      } 	  
+
+		  Serial.println("Erro ao obter dados do sensor de nível");       
+		  return; 
+
+    } 	  
 	  
-      http.begin( urlPath.c_str() ); 	  
+    http.begin( urlPath.c_str() ); 	  
 	  http.addHeader("Content-Type", "application/json"); 
 	  http.addHeader("fiware-service", "reflexiot");
 	  http.addHeader("fiware-servicepath", "/");
  
-      // Coloca a leitura do sensor no formato JSON 
-      String json; 
-      DynamicJsonDocument doc(1024); 
+    // Coloca a leitura do sensor no formato JSON 
+    String json; 
+    DynamicJsonDocument doc(1024); 
 	  
-      doc["l"]= l; 
+    doc["l"]= l; 
       
-      serializeJson(doc, json); 
+    serializeJson(doc, json); 
 	  
 	  //mostra no serial monitor o valor lido no formato json
-      Serial.println(json); 
+    Serial.println(json); 
  
 	  //envia para o ReFLeX.IoT
-      int httpResponseCode = http.POST(json);  
+    int httpResponseCode = http.POST(json);  
 
 	  //retorno da solicitação
-      if (httpResponseCode > 0) { 
+    if (httpResponseCode > 0) { 
 	  
-        Serial.print("HTTP Response code: "); 
-        Serial.println(httpResponseCode); 
-        String payload = http.getString(); 
-        Serial.println(payload); 
+      Serial.print("HTTP Response code: "); 
+      Serial.println(httpResponseCode); 
+      String payload = http.getString(); 
+      Serial.println(payload); 
+     
+	  }else{ 
+      Serial.print("Error code: "); 
+      Serial.println(httpResponseCode); 
+    } 
       
-	  } else { 
-        Serial.print("Error code: "); 
-        Serial.println(httpResponseCode); 
-      } 
-      
-	  http.end();
+	    http.end();
     } 
     else { 
       Serial.println("WiFi Desconectado"); 
@@ -140,11 +145,11 @@ void loop() {
 *5 - Coleta das leituras*
 ```
 int leituraSensorNivel() {  
- digitalWrite(sensorvcc, HIGH); /* alimenta o sensor */
- delay(10);              		/* espera 10ms */
- val = analogRead(sensorsinal); /* Faz a leitura analógica do sensor */
- digitalWrite(sensorvcc, LOW);  /* Desliga o sensor */
+ digitalWrite(sensorVCC, HIGH); /* alimenta o sensor */
+ delay(10);              		    /* espera 10ms */
+ val = analogRead(sensorSinal); /* Faz a leitura analógica do sensor */
+ digitalWrite(sensorVCC, LOW);  /* Desliga o sensor */
  
- return val;             		/* envia leitura */
+ return val;             		    /* envia leitura */
 }
 ```
