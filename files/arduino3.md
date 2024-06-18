@@ -1,4 +1,4 @@
-## Example 2 - connecting Arduino to the ThingSpeak without internet connect 
+## Example 3 - connecting Arduino to the ThingSpeak without internet connect 
 
 # ThingSpeak Gateway Serial Port
 (by Rosiberto Santos)
