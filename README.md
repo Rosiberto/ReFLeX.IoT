@@ -30,3 +30,5 @@ IoT Platform for Prototyping applications for Smart Cities.
    
    <a href="files/arduino2.md">Example 2</a>
    
+   <a href="files/arduino3.md">Example 3</a>
+   
