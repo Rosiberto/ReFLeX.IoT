@@ -26,6 +26,7 @@ services:
     depends_on:
       - mongo
       - mysql
+      - orion
     networks:
       - reflex
     expose:
