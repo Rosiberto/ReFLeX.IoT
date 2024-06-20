@@ -1,4 +1,4 @@
-# ReFLeX.IoT
+# ReFLeX.IoT Platform
 
 ## About
 IoT Platform for Prototyping applications for Smart Cities.
