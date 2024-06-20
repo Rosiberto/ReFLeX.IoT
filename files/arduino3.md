@@ -8,7 +8,7 @@
 
 1. Conecte seu arduino ao computador (desktop ou notebook)
  
-2. Dê dois cliques no arquivo ThingSpeak-Gateway.exe 
+2. Faça o Download do arquivo <a href="https://github.com/Rosiberto/Gateway-Serial-Port"> ThingSpeak-Gateway.exe</a> e execute-o 
 
 3. Digite o número da Porta que o Arduino foi reconhecido e aperte ENTER
 
