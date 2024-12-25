@@ -2,7 +2,6 @@ services:
 
   # Orion is the context broker
   orion:
-    restart: always
     image: fiware/orion:latest
     hostname: orion
     container_name: orion
@@ -15,18 +14,16 @@ services:
       - "1026"
     ports:
       - "1026:1026"
-    command: -dbhost mongo -corsOrigin __ALL -logLevel DEBUG
-    
+    command: -dbURI mongodb://mongo -corsOrigin __ALL -logLevel DEBUG -noCache
+
   # Cygnus is configured to write context data
   cygnus:
-    restart: always
     image: fiware/cygnus-ngsi:latest
     hostname: cygnus
     container_name: cygnus
     depends_on:
       - mongo
       - mysql
-      - orion
     networks:
       - reflex
     expose:
@@ -45,13 +42,13 @@ services:
       - "CYGNUS_MYSQL_SERVICE_PORT=5050"
         
   agentjson:
-    restart: always
     image: fiware/iotagent-json:latest
     hostname: agentjson
     container_name: agentjson
     depends_on:
       - mongo
       - mysql
+      - orion
     networks:
       - reflex
     expose:
@@ -73,7 +70,6 @@ services:
       
   # Databases - Orion uses Mongo-DB, Cygnus is persisting
   mongo:
-    restart: always
     image: mongo:latest
     hostname: mongo
     container_name: mongo
@@ -87,7 +83,6 @@ services:
       
   # Databases - Orion uses Mysql, Cygnus is persisting
   mysql:
-    restart: always
     image: mysql:latest
     hostname: mysql
     container_name: mysql
@@ -121,8 +116,8 @@ services:
     command: gunicorn -w 2 -b 0.0.0.0:5000 wsgi:server
   
   nginx:
-    container_name: nginx
     restart: always
+    container_name: nginx
     build: ./nginx
     ports:
       - "80:80"
@@ -133,10 +128,10 @@ services:
   
   # grafana used for graphing mysql data
   grafana:
+    restart: unless-stopped
     image: grafana/grafana-oss:latest
     hostname: grafana
     container_name: grafana
-    restart: unless-stopped
     ports:
       - 3000:3000
     networks:
@@ -146,9 +141,6 @@ services:
     depends_on:
       - mongo 
       - mysql
-      - agentjson
-      - cygnus
-      - orion
 
 networks:
   reflex:
